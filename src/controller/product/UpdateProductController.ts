@@ -1,19 +1,19 @@
 import { Request, Response } from 'express';
 
-class UpdateUserController {
+class UpdateProductController {
   async handle(req: Request, res: Response) {
     const id = req.query.id;
     const { name, email, admin, password } = req.body;
 
-    const user = {
+    const product = {
       name,
       email,
       admin,
       password,
     };
 
-    return res.json(user);
+    return res.json(product);
   }
 }
 
-export { UpdateUserController };
+export { UpdateProductController };

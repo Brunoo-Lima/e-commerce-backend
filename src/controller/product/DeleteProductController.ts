@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 
-class DeleteUserController {
+class DeleteProductController {
   async handle(req: Request, res: Response) {
     const id = req.query.id;
 
-    return res.send('Registro excluido com Sucesso!');
+    return res.send('Produto excluido com Sucesso!');
   }
 }
 
-export { DeleteUserController };
+export { DeleteProductController };
