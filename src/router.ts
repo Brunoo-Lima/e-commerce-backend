@@ -15,6 +15,11 @@ import { ListCategoryController } from './controller/category/ListCategoryContro
 import { DeleteCategoryController } from './controller/category/DeleteCategoryController';
 import { UpdateCategoryController } from './controller/category/UpdateCategoryController';
 
+import { CreateSalesController } from './controller/sales/CreateSalesController';
+import { ListSalesController } from './controller/sales/ListSalesController';
+import { DeleteSalesController } from './controller/sales/DeleteSalesController';
+import { UpdateSalesController } from './controller/sales/UpdateSalesController';
+
 const router = Router();
 
 //--ROTAS USER--
@@ -34,5 +39,11 @@ router.post('/categories', new CreateCategoryController().handle);
 router.get('/categories', new ListCategoryController().handle);
 router.put('/categories/update', new UpdateCategoryController().handle);
 router.delete('/categories/delete', new DeleteCategoryController().handle);
+
+//--ROTAS SALES--
+router.post('/sales', new CreateSalesController().handle);
+router.get('/sales', new ListSalesController().handle);
+router.put('/sales/update', new UpdateSalesController().handle);
+router.delete('/sales/delete', new DeleteSalesController().handle);
 
 export { router };
