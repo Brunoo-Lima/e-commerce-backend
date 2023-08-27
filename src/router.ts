@@ -23,27 +23,27 @@ import { UpdateSalesController } from './controller/sales/UpdateSalesController'
 const router = Router();
 
 //--ROTAS USER--
-router.post('/users', new CreateUserController().handle);
-router.get('/users', new ListUserController().handle);
-router.put('/users/update', new UpdateUserController().handle);
-router.delete('/users/delete', new DeleteUserController().handle);
+router.post('/user', new CreateUserController().handle);
+router.get('/user', new ListUserController().handle);
+router.put('/user/:id', new UpdateUserController().handle);
+router.delete('/user/:id', new DeleteUserController().handle);
 
 //--ROTAS PRODUCT--
-router.post('/products', new CreateProductController().handle);
-router.get('/products', new ListProductController().handle);
-router.put('/products/update', new UpdateProductController().handle);
-router.delete('/products/delete', new DeleteProductController().handle);
+router.post('/product', new CreateProductController().handle);
+router.get('/product', new ListProductController().handle);
+router.put('/product/:id', new UpdateProductController().handle);
+router.delete('/product/:id', new DeleteProductController().handle);
 
 //--ROTAS CATEGORY--
-router.post('/categories', new CreateCategoryController().handle);
-router.get('/categories', new ListCategoryController().handle);
-router.put('/categories/update', new UpdateCategoryController().handle);
-router.delete('/categories/delete', new DeleteCategoryController().handle);
+router.post('/category', new CreateCategoryController().handle);
+router.get('/category', new ListCategoryController().handle);
+router.put('/category/:id', new UpdateCategoryController().handle);
+router.delete('/category/:id', new DeleteCategoryController().handle);
 
 //--ROTAS SALES--
 router.post('/sales', new CreateSalesController().handle);
 router.get('/sales', new ListSalesController().handle);
-router.put('/sales/update', new UpdateSalesController().handle);
-router.delete('/sales/delete', new DeleteSalesController().handle);
+router.put('/sales/:id', new UpdateSalesController().handle);
+router.delete('/sales/:id', new DeleteSalesController().handle);
 
 export { router };

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 class UpdateCategoryController {
   async handle(req: Request, res: Response) {
-    const id = req.query.id;
+    const id = req.params.id;
     const { name } = req.body;
 
     const category = {

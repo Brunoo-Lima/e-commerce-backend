@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 class UpdateUserController {
   async handle(req: Request, res: Response) {
-    const id = req.query.id;
+    const id = req.params.id;
     const { name, email, admin, password } = req.body;
 
     const user = {
