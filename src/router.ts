@@ -19,11 +19,13 @@ import { CreateSalesController } from './controller/sales/CreateSalesController'
 import { ListSalesController } from './controller/sales/ListSalesController';
 import { DeleteSalesController } from './controller/sales/DeleteSalesController';
 import { UpdateSalesController } from './controller/sales/UpdateSalesController';
+import { AuthUserController } from './controller/user/AuthUserController';
 
 const router = Router();
 
 //--ROTAS USER--
 router.post('/user', new CreateUserController().handle);
+router.post('/me', new AuthUserController().handle);
 router.get('/user', new ListUserController().handle);
 router.put('/user/:id', new UpdateUserController().handle);
 router.delete('/user/:id', new DeleteUserController().handle);
