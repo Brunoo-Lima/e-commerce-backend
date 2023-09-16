@@ -1,4 +1,5 @@
 import { Request, Response, Router } from 'express';
+import { isAuthenticated } from './middlewares/isAuthenticated';
 
 import { CreateUserController } from './controller/user/CreateUserController';
 import { ListUserController } from './controller/user/ListUserController';
@@ -26,12 +27,12 @@ const router = Router();
 //--ROTAS USER--
 router.post('/user', new CreateUserController().handle);
 router.post('/me', new AuthUserController().handle);
-router.get('/user', new ListUserController().handle);
-router.put('/user/:id', new UpdateUserController().handle);
+router.get('/user', isAuthenticated, new ListUserController().handle);
+router.put('/user/:id', isAuthenticated, new UpdateUserController().handle);
 router.delete('/user/:id', new DeleteUserController().handle);
 
 //--ROTAS PRODUCT--
-router.post('/product', new CreateProductController().handle);
+router.post('/product', isAuthenticated, new CreateProductController().handle);
 router.get('/product', new ListProductController().handle);
 router.put('/product/:id', new UpdateProductController().handle);
 router.delete('/product/:id', new DeleteProductController().handle);
