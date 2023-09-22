@@ -1,6 +1,8 @@
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { getCustomRepository } from 'typeorm';
+import { UsersRepositories } from '../../repositories/UsersRepositories';
 
 dotenv.config();
 interface UserRequest {
@@ -10,7 +12,14 @@ interface UserRequest {
 
 class AuthUserService {
   async execute({ email, password }: UserRequest) {
-    if (email !== 'prog@fatec.com') throw new Error('Email incorreto');
+    if (!email) throw new Error('Email incorreto');
+
+    const usersRepository = getCustomRepository(UsersRepositories);
+    const user = await usersRepository.findOne({
+      where: {
+        email,
+      },
+    });
 
     const passwordHash = await hash('fatec', 8);
 
@@ -20,7 +29,8 @@ class AuthUserService {
 
     const token = sign(
       {
-        email: 'prog@fatec.com',
+        email: user.email,
+        password: user.password,
       },
       process.env.JWT_SECRET,
       {
