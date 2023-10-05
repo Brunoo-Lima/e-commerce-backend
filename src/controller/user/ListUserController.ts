@@ -1,24 +1,10 @@
 import { Request, Response } from 'express';
+import { ListUserService } from '../../service/user/ListUserService';
 
 class ListUserController {
   async handle(req: Request, res: Response) {
-    const user = [
-      {
-        id: 1,
-        name: 'Bruno',
-        email: 'bruno@gmail.com',
-      },
-      {
-        id: 2,
-        name: 'Leo',
-        email: 'leo@gmail.com',
-      },
-      {
-        id: 3,
-        name: 'Ale',
-        email: 'Ale@gmail.com',
-      },
-    ];
+    const listUsers = new ListUserService();
+    const user = await listUsers.execute();
 
     return res.json(user);
   }

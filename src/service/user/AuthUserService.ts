@@ -21,7 +21,7 @@ class AuthUserService {
       },
     });
 
-    const passwordHash = await hash('fatec', 8);
+    const passwordHash = await hash(password, 8);
 
     const passwordMatch = await compare(password, passwordHash);
 
@@ -40,8 +40,8 @@ class AuthUserService {
     );
 
     return {
-      email: 'prog@fatec.com',
-      password: 'fatec',
+      email: user.email,
+      password: user.password,
       token,
     };
   }
