@@ -29,7 +29,7 @@ router.post('/user', new CreateUserController().handle);
 router.post('/me', new AuthUserController().handle);
 router.get('/user', isAuthenticated, new ListUserController().handle);
 router.put('/user/:id', isAuthenticated, new UpdateUserController().handle);
-router.delete('/user/:id', new DeleteUserController().handle);
+router.delete('/user/:id', isAuthenticated, new DeleteUserController().handle);
 
 //--ROTAS PRODUCT--
 router.post('/product', isAuthenticated, new CreateProductController().handle);
