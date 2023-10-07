@@ -33,20 +33,44 @@ router.delete('/user/:id', isAuthenticated, new DeleteUserController().handle);
 
 //--ROTAS PRODUCT--
 router.post('/product', isAuthenticated, new CreateProductController().handle);
-router.get('/product', new ListProductController().handle);
-router.put('/product/:id', new UpdateProductController().handle);
-router.delete('/product/:id', new DeleteProductController().handle);
+router.get('/product', isAuthenticated, new ListProductController().handle);
+router.put(
+  '/product/:id',
+  isAuthenticated,
+  new UpdateProductController().handle
+);
+router.delete(
+  '/product/:id',
+  isAuthenticated,
+  new DeleteProductController().handle
+);
 
 //--ROTAS CATEGORY--
-router.post('/category', new CreateCategoryController().handle);
-router.get('/category', new ListCategoryController().handle);
-router.put('/category/:id', new UpdateCategoryController().handle);
-router.delete('/category/:id', new DeleteCategoryController().handle);
+router.post(
+  '/category',
+  isAuthenticated,
+  new CreateCategoryController().handle
+);
+router.get('/category', isAuthenticated, new ListCategoryController().handle);
+router.put(
+  '/category/:id',
+  isAuthenticated,
+  new UpdateCategoryController().handle
+);
+router.delete(
+  '/category/:id',
+  isAuthenticated,
+  new DeleteCategoryController().handle
+);
 
 //--ROTAS SALES--
-router.post('/sales', new CreateSalesController().handle);
-router.get('/sales', new ListSalesController().handle);
-router.put('/sales/:id', new UpdateSalesController().handle);
-router.delete('/sales/:id', new DeleteSalesController().handle);
+router.post('/sales', isAuthenticated, new CreateSalesController().handle);
+router.get('/sales', isAuthenticated, new ListSalesController().handle);
+router.put('/sales/:id', isAuthenticated, new UpdateSalesController().handle);
+router.delete(
+  '/sales/:id',
+  isAuthenticated,
+  new DeleteSalesController().handle
+);
 
 export { router };
