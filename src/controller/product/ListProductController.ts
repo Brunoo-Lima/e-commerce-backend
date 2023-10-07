@@ -1,33 +1,11 @@
 import { Request, Response } from 'express';
+import { ListProductService } from '../../service/product/ListProductService';
 
 class ListProductController {
   async handle(req: Request, res: Response) {
-    const product = [
-      {
-        id: 1,
-        name: 'Pizza',
-        description: 'Saborosa',
-        price: 38,
-        url: 'pizza.png',
-        category_id: '1',
-      },
-      {
-        id: 2,
-        name: 'Coca 2L',
-        description: 'Refrescante',
-        price: 12,
-        url: 'coca.png',
-        category_id: '2',
-      },
-      {
-        id: 3,
-        name: 'Guarana 2L',
-        description: 'Refrescante',
-        price: 12,
-        url: 'guarana.png',
-        category_id: '2',
-      },
-    ];
+    const listProductService = new ListProductService();
+
+    const product = await listProductService.execute();
 
     return res.json(product);
   }

@@ -14,6 +14,17 @@ class CreateProductService {
   async execute({ name, description, price, url, category }: ProductRequest) {
     const productsRepositories = getCustomRepository(ProductsRepositories);
 
+    if (!name || !description || !price || !url || !category)
+      throw new Error('Campo vazio');
+
+    const productAlreadyExists = productsRepositories.findOne({
+      where: {
+        name: name,
+      },
+    });
+
+    if (productAlreadyExists) throw new Error('Produto já existe');
+
     const product = productsRepositories.create({
       name,
       description,
