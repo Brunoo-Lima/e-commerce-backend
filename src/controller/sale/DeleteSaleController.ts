@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-class DeleteSalesController {
+class DeleteSaleController {
   async handle(req: Request, res: Response) {
     const id = req.params.id;
 
@@ -8,4 +8,4 @@ class DeleteSalesController {
   }
 }
 
-export { DeleteSalesController };
+export { DeleteSaleController };

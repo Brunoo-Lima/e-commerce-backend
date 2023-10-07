@@ -7,8 +7,6 @@ class ListProductService {
 
     const product = await listProduct.find();
 
-    if (!product) throw new Error('Lista vazia');
-
     return product;
   }
 }

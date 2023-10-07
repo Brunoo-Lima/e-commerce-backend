@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-class ListSalesController {
+class ListSaleController {
   async handle(req: Request, res: Response) {
     const sales = [
       {
@@ -17,4 +17,4 @@ class ListSalesController {
   }
 }
 
-export { ListSalesController };
+export { ListSaleController };

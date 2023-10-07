@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-class CreateSalesController {
+class CreateSaleController {
   async handle(req: Request, res: Response) {
     const { id, product_id, user_id, total, description, observation } =
       req.body;
@@ -18,4 +18,4 @@ class CreateSalesController {
   }
 }
 
-export { CreateSalesController };
+export { CreateSaleController };
