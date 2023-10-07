@@ -20,6 +20,14 @@ class CreateCategoryService {
 
     if (categoryAlreadyExists) throw new Error('Categoria já existe');
 
+    const idAlreadyExists = await createCategory.findOne({
+      where: {
+        id: id,
+      },
+    });
+
+    if (idAlreadyExists) throw new Error('Id já existe');
+
     const category = createCategory.create({
       id,
       name,

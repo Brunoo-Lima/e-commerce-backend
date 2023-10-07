@@ -17,7 +17,7 @@ class AuthUserService {
     const usersRepository = getCustomRepository(UsersRepositories);
     const user = await usersRepository.findOne({
       where: {
-        email,
+        email: email,
       },
     });
 
