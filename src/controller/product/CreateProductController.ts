@@ -1,17 +1,19 @@
 import { Request, Response } from 'express';
+import { CreateProductService } from '../../service/product/CreateProductService';
 
 class CreateProductController {
   async handle(req: Request, res: Response) {
-    const { id, name, description, price, url, categoryId } = req.body;
+    const { name, description, price, url, category } = req.body;
 
-    const product = {
-      id,
+    const createProductService = new CreateProductService();
+
+    const product = await createProductService.execute({
       name,
       description,
       price,
       url,
-      categoryId,
-    };
+      category,
+    });
 
     return res.json(product);
   }
