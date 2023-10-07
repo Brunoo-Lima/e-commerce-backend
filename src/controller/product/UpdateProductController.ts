@@ -1,16 +1,21 @@
 import { Request, Response } from 'express';
+import { UpdateProductService } from '../../service/product/UpdateProductService';
 
 class UpdateProductController {
   async handle(req: Request, res: Response) {
     const id = req.params.id;
-    const { name, email, admin, password } = req.body;
+    const { name, description, price, url, category } = req.body;
 
-    const product = {
+    const updateProductService = new UpdateProductService();
+
+    const product = await updateProductService.execute({
+      id,
       name,
-      email,
-      admin,
-      password,
-    };
+      description,
+      price,
+      url,
+      category,
+    });
 
     return res.json(product);
   }
