@@ -4,8 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { Sale } from './Sale';
 
 @Entity('users')
 export class User {
@@ -19,6 +21,9 @@ export class User {
   admin!: boolean;
   @Column()
   password!: string;
+
+  @OneToMany(() => Sale, (sale) => sale.user)
+  sales: Sale[];
 
   @CreateDateColumn()
   created_at!: Date;

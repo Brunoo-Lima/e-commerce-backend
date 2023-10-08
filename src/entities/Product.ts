@@ -1,6 +1,7 @@
 import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Category } from './Category';
+import { Sale } from './Sale';
 
 @Entity('products')
 export class Product {
@@ -18,6 +19,9 @@ export class Product {
   @ManyToOne(() => Category, (category) => category.products)
   @JoinColumn({ name: 'category_id' })
   category: Category;
+
+  @ManyToOne(() => Sale, (sale) => sale.products)
+  sale: Sale;
 
   constructor() {
     if (!this.id) {

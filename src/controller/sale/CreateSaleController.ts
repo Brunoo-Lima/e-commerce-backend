@@ -1,20 +1,22 @@
 import { Request, Response } from 'express';
+// import { CreateSaleService } from '../../service/sale/CreateSaleService';
 
 class CreateSaleController {
   async handle(req: Request, res: Response) {
-    const { id, product_id, user_id, total, description, observation } =
-      req.body;
+    const { id, total, description, observation, products, user } = req.body;
 
-    const sales = {
-      id,
-      product_id,
-      user_id,
-      total,
-      description,
-      observation,
-    };
+    // const saleCreateService = new CreateSaleService();
 
-    return res.json(sales);
+    // const sales = await saleCreateService.execute({
+    //   id,
+    //   total,
+    //   description,
+    //   observation,
+    //   products,
+    //   user,
+    // });
+
+    // return res.json(sales);
   }
 }
 
