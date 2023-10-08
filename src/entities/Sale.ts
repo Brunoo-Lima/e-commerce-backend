@@ -8,6 +8,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  JoinTable,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Product } from './Product';
@@ -30,8 +31,8 @@ export class Sale {
   @UpdateDateColumn()
   updated_at!: Date;
 
-  @ManyToMany(() => Product, (product) => product.sales)
-  @JoinColumn({ name: 'product_id' })
+  @ManyToMany(() => Product, { eager: true, cascade: true })
+  @JoinTable()
   products: Product[];
 
   @ManyToOne(() => User, (user) => user.sales)

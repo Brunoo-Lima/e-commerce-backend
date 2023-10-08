@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export class sale1696771331328 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -66,9 +71,48 @@ export class sale1696771331328 implements MigrationInterface {
         // ],
       }),
     );
+
+    await queryRunner.createTable(
+      new Table({
+        name: 'sales_products',
+        columns: [
+          {
+            name: 'product_id',
+            type: 'uuid',
+            isNullable: false,
+          },
+          {
+            name: 'sale_id',
+            type: 'uuid',
+            isNullable: false,
+          },
+        ],
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'fk_sale_product',
+      new TableForeignKey({
+        columnNames: ['product_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'products',
+        onDelete: 'CASCADE',
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'fk_sale_sales',
+      new TableForeignKey({
+        columnNames: ['sale_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'sales',
+        onDelete: 'CASCADE',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable('sales_products');
     await queryRunner.dropTable('sales');
   }
 }

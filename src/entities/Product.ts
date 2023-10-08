@@ -34,9 +34,8 @@ export class Product {
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
-  @ManyToMany(() => Sale, (sale) => sale.products)
-  @JoinColumn({ name: 'sale_id' })
-  sales: Sale[];
+  // @ManyToMany(() => Sale, (sale) => sale.products)
+  // sales: Sale[];
 
   constructor() {
     if (!this.id) {
