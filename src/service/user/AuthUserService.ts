@@ -1,10 +1,8 @@
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import { getCustomRepository } from 'typeorm';
 import { UsersRepositories } from '../../repositories/UsersRepositories';
 
-dotenv.config();
 interface UserRequest {
   email: string;
   password: string;
@@ -36,7 +34,7 @@ class AuthUserService {
       {
         subject: 'Admin',
         expiresIn: '30d',
-      }
+      },
     );
 
     return {

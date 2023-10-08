@@ -24,7 +24,7 @@ class UpdateProductService {
 
     const product = await updateProduct.update(
       { id },
-      { name, description, price, url, category }
+      { name, description, price, url, category },
     );
 
     return product;

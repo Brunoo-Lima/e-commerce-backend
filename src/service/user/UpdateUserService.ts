@@ -28,7 +28,7 @@ class UpdateUserService {
 
     const update = await updateUser.update(
       { id },
-      { name, email, admin, password: passwordHash }
+      { name, email, admin, password: passwordHash },
     );
 
     return update;

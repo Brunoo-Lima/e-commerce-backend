@@ -17,7 +17,7 @@ class CreateProductService {
     if (!name || !description || !price || !url || !category)
       throw new Error('Campo vazio');
 
-    const productAlreadyExists = productsRepositories.findOne({
+    const productAlreadyExists = await productsRepositories.findOne({
       where: {
         name: name,
       },

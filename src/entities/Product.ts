@@ -1,4 +1,13 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  ManyToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Category } from './Category';
 import { Sale } from './Sale';
@@ -16,12 +25,18 @@ export class Product {
   @Column()
   url: string;
 
+  @CreateDateColumn()
+  created_at!: Date;
+  @UpdateDateColumn()
+  updated_at!: Date;
+
   @ManyToOne(() => Category, (category) => category.products)
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
-  @ManyToOne(() => Sale, (sale) => sale.products)
-  sale: Sale;
+  @ManyToMany(() => Sale, (sale) => sale.products)
+  @JoinColumn({ name: 'sale_id' })
+  sales: Sale[];
 
   constructor() {
     if (!this.id) {

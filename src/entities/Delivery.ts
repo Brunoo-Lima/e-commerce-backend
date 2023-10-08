@@ -2,27 +2,31 @@ import {
   Entity,
   PrimaryColumn,
   Column,
-  OneToMany,
+  ManyToOne,
+  JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
-import { Product } from './Product';
+import { Sale } from './Sale';
 
-@Entity('categories')
-export class Category {
+@Entity('deliveries')
+export class Delivery {
   @PrimaryColumn()
   id!: string;
   @Column()
-  name: string;
+  date_delivery!: Date;
+  @Column()
+  observation: string;
 
   @CreateDateColumn()
   created_at!: Date;
   @UpdateDateColumn()
   updated_at!: Date;
 
-  @OneToMany(() => Product, (product) => product.category)
-  products: Product[];
+  @ManyToOne(() => Sale, (sale) => sale.deliveries)
+  @JoinColumn({ name: 'sale_id' })
+  sale!: Sale;
 
   constructor() {
     if (!this.id) {
