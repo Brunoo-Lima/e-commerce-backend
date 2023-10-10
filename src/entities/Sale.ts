@@ -26,20 +26,26 @@ export class Sale {
   @Column()
   observation: string;
 
+  @Column()
+  user_id: string;
+
+  @Column()
+  product_id: string;
+
   @CreateDateColumn()
   created_at!: Date;
   @UpdateDateColumn()
   updated_at!: Date;
 
-  @ManyToMany(() => Product, { eager: true, cascade: true })
-  @JoinTable()
+  @ManyToOne(() => Product, (product) => product.sales)
+  @JoinColumn({ name: 'product_id' })
   products: Product[];
 
   @ManyToOne(() => User, (user) => user.sales)
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @OneToMany(() => Delivery, (delivery) => delivery.sale)
+  @OneToMany(() => Delivery, (delivery) => delivery.sales)
   deliveries: Delivery[];
 
   constructor() {

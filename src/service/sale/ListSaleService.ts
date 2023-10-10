@@ -5,7 +5,7 @@ class ListSaleService {
   async execute() {
     const listSale = getCustomRepository(SalesRepositories);
 
-    const sale = await listSale.find();
+    const sale = await listSale.find({ relations: ['products'] });
 
     return sale;
   }

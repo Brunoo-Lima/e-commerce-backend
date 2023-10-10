@@ -4,9 +4,10 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
-  ManyToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
+  OneToMany,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Category } from './Category';
@@ -25,6 +26,9 @@ export class Product {
   @Column()
   url: string;
 
+  @Column()
+  category_id: string;
+
   @CreateDateColumn()
   created_at!: Date;
   @UpdateDateColumn()
@@ -34,8 +38,8 @@ export class Product {
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
-  // @ManyToMany(() => Sale, (sale) => sale.products)
-  // sales: Sale[];
+  @OneToMany(() => Sale, (sale) => sale.products)
+  sales: Sale[];
 
   constructor() {
     if (!this.id) {

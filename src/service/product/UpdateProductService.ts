@@ -1,6 +1,5 @@
 import { getCustomRepository } from 'typeorm';
 import { ProductsRepositories } from '../../repositories/ProductsRepositories';
-import { Category } from '../../entities/Category';
 
 interface ProductRequest {
   id: string;
@@ -8,7 +7,7 @@ interface ProductRequest {
   description: string;
   price: number;
   url: string;
-  category: Category;
+  category_id: string;
 }
 
 class UpdateProductService {
@@ -18,13 +17,13 @@ class UpdateProductService {
     description,
     price,
     url,
-    category,
+    category_id,
   }: ProductRequest) {
     const updateProduct = getCustomRepository(ProductsRepositories);
 
     const product = await updateProduct.update(
       { id },
-      { name, description, price, url, category },
+      { name, description, price, url, category_id },
     );
 
     return product;

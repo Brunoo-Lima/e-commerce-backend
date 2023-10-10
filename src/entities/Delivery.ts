@@ -19,6 +19,9 @@ export class Delivery {
   @Column()
   observation: string;
 
+  @Column()
+  sale_id: string;
+
   @CreateDateColumn()
   created_at!: Date;
   @UpdateDateColumn()
@@ -26,7 +29,7 @@ export class Delivery {
 
   @ManyToOne(() => Sale, (sale) => sale.deliveries)
   @JoinColumn({ name: 'sale_id' })
-  sale!: Sale;
+  sales!: Sale;
 
   constructor() {
     if (!this.id) {

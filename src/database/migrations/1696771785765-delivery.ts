@@ -23,10 +23,10 @@ export class delivery1696771785765 implements MigrationInterface {
             name: 'observation',
             type: 'varchar',
           },
-          // {
-          //   name: 'sale_id',
-          //   type: 'uuid',
-          // },
+          {
+            name: 'sale_id',
+            type: 'uuid',
+          },
           {
             name: 'created_at',
             type: 'timestamp',
@@ -38,16 +38,16 @@ export class delivery1696771785765 implements MigrationInterface {
             default: 'now()',
           },
         ],
-        // foreignKeys: [
-        //   {
-        //     name: 'fk_delivery_sale',
-        //     columnNames: ['sale_id'],
-        //     referencedTableName: 'sales',
-        //     referencedColumnNames: ['id'],
-        //     onDelete: 'CASCADE',
-        //     onUpdate: 'CASCADE',
-        //   },
-        // ],
+        foreignKeys: [
+          {
+            name: 'fk_delivery_sale',
+            columnNames: ['sale_id'],
+            referencedTableName: 'sales',
+            referencedColumnNames: ['id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+        ],
       }),
     );
   }

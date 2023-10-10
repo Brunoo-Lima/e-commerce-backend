@@ -33,14 +33,10 @@ export class product1696770447297 implements MigrationInterface {
             name: 'url',
             type: 'varchar',
           },
-          //   {
-          //     name: 'category_id',
-          //     type: 'uuid',
-          //   },
-          //   {
-          //     name: 'sale_id',
-          //     type: 'uuid',
-          //   },
+          {
+            name: 'category_id',
+            type: 'uuid',
+          },
           {
             name: 'created_at',
             type: 'timestamp',
@@ -52,24 +48,16 @@ export class product1696770447297 implements MigrationInterface {
             default: 'now()',
           },
         ],
-        // foreignKeys: [
-        //   {
-        //     name: 'fk_product_category',
-        //     columnNames: ['category_id'],
-        //     referencedTableName: 'categories',
-        //     referencedColumnNames: ['id'],
-        //     onDelete: 'CASCADE',
-        //     onUpdate: 'CASCADE',
-        //   },
-        //   {
-        //     name: 'fk_product_sale',
-        //     columnNames: ['sale_id'],
-        //     referencedTableName: 'sales',
-        //     referencedColumnNames: ['id'],
-        //     onDelete: 'CASCADE',
-        //     onUpdate: 'CASCADE',
-        //   },
-        // ],
+        foreignKeys: [
+          {
+            name: 'fk_product_category',
+            columnNames: ['category_id'],
+            referencedTableName: 'categories',
+            referencedColumnNames: ['id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+        ],
       }),
     );
   }

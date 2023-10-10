@@ -6,6 +6,7 @@ class ListSaleController {
     const listService = new ListSaleService();
 
     const sales = await listService.execute();
+    console.log(sales);
 
     return res.json(sales);
   }

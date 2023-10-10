@@ -1,20 +1,25 @@
 import { getCustomRepository } from 'typeorm';
 import { ProductsRepositories } from '../../repositories/ProductsRepositories';
-import { Category } from '../../entities/Category';
 
 interface ProductRequest {
   name: string;
   description: string;
   price: number;
   url: string;
-  category: Category;
+  category_id: string;
 }
 
 class CreateProductService {
-  async execute({ name, description, price, url, category }: ProductRequest) {
+  async execute({
+    name,
+    description,
+    price,
+    url,
+    category_id,
+  }: ProductRequest) {
     const productsRepositories = getCustomRepository(ProductsRepositories);
 
-    if (!name || !description || !price || !url || !category)
+    if (!name || !description || !price || !url || !category_id)
       throw new Error('Campo vazio');
 
     const productAlreadyExists = await productsRepositories.findOne({
@@ -30,7 +35,7 @@ class CreateProductService {
       description,
       price,
       url,
-      category,
+      category_id,
     });
 
     await productsRepositories.save(product);
