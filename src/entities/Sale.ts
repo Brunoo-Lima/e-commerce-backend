@@ -29,16 +29,23 @@ export class Sale {
   @Column()
   user_id: string;
 
-  @Column()
-  product_id: string;
-
   @CreateDateColumn()
   created_at!: Date;
   @UpdateDateColumn()
   updated_at!: Date;
 
-  @ManyToOne(() => Product, (product) => product.sales)
-  @JoinColumn({ name: 'product_id' })
+  @ManyToMany(() => Product, { cascade: true })
+  @JoinTable({
+    name: 'sales_products',
+    joinColumn: {
+      name: 'sale_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'product_id',
+      referencedColumnName: 'id',
+    },
+  })
   products: Product[];
 
   @ManyToOne(() => User, (user) => user.sales)

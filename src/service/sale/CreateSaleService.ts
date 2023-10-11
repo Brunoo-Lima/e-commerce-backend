@@ -1,11 +1,12 @@
 import { getCustomRepository } from 'typeorm';
 import { SalesRepositories } from '../../repositories/SalesRepositories';
+import { Product } from '../../entities/Product';
 
 interface SaleRequest {
   total: number;
   description?: string;
   observation?: string;
-  product_id: string;
+  products: Product[];
   user_id: string;
 }
 
@@ -14,7 +15,7 @@ class CreateSaleService {
     total,
     description,
     observation,
-    product_id,
+    products,
     user_id,
   }: SaleRequest) {
     const createSale = getCustomRepository(SalesRepositories);
@@ -23,7 +24,7 @@ class CreateSaleService {
       total,
       description,
       observation,
-      product_id,
+      products,
       user_id,
     });
 

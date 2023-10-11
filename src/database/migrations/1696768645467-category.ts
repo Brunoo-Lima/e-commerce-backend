@@ -31,7 +31,7 @@ export class category1696768645467 implements MigrationInterface {
             default: 'now()',
           },
         ],
-      }),
+      })
     );
   }
 

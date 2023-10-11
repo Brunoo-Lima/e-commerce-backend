@@ -9,7 +9,7 @@ interface SaleRequest {
   description?: string;
   observation?: string;
   products: Product[];
-  user: User;
+  user_id: string;
 }
 
 class UpdateSaleService {
@@ -19,13 +19,13 @@ class UpdateSaleService {
     description,
     observation,
     products,
-    user,
+    user_id,
   }: SaleRequest) {
     const updateSale = getCustomRepository(SalesRepositories);
 
     const sale = await updateSale.update(
       { id },
-      { total, description, observation, products, user },
+      { total, description, observation, products, user_id }
     );
     console.log(sale);
 

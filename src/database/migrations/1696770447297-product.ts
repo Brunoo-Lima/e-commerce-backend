@@ -58,7 +58,7 @@ export class product1696770447297 implements MigrationInterface {
             onUpdate: 'CASCADE',
           },
         ],
-      }),
+      })
     );
   }
 

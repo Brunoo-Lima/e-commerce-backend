@@ -6,12 +6,9 @@ import {
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToMany,
-  OneToMany,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Category } from './Category';
-import { Sale } from './Sale';
 
 @Entity('products')
 export class Product {
@@ -37,9 +34,6 @@ export class Product {
   @ManyToOne(() => Category, (category) => category.products)
   @JoinColumn({ name: 'category_id' })
   category: Category;
-
-  @OneToMany(() => Sale, (sale) => sale.products)
-  sales: Sale[];
 
   constructor() {
     if (!this.id) {

@@ -24,10 +24,6 @@ export class sale1696771331328 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'product_id',
-            type: 'uuid',
-          },
-          {
             name: 'user_id',
             type: 'uuid',
           },
@@ -48,14 +44,6 @@ export class sale1696771331328 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'fk_sale_product',
-            columnNames: ['product_id'],
-            referencedTableName: 'products',
-            referencedColumnNames: ['id'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-          },
-          {
             name: 'fk_sale_user',
             columnNames: ['user_id'],
             referencedTableName: 'users',
@@ -64,7 +52,7 @@ export class sale1696771331328 implements MigrationInterface {
             onUpdate: 'CASCADE',
           },
         ],
-      }),
+      })
     );
   }
 

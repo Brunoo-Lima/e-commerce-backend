@@ -48,7 +48,7 @@ export class delivery1696771785765 implements MigrationInterface {
             onUpdate: 'CASCADE',
           },
         ],
-      }),
+      })
     );
   }
 
