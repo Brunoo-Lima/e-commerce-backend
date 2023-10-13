@@ -5,7 +5,12 @@ class ListSaleService {
   async execute() {
     const listSale = getCustomRepository(SalesRepositories);
 
-    const sale = await listSale.find({ relations: ['products'] });
+    const sale = await listSale.find({
+      order: { id: 'DESC' },
+      relations: ['products'],
+    });
+
+    if (sale.length == 0) return 'Lista vazia';
 
     return sale;
   }

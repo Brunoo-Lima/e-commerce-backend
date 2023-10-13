@@ -1,17 +1,14 @@
 import { getCustomRepository } from 'typeorm';
 import { SalesRepositories } from '../../repositories/SalesRepositories';
 
-interface SaleRequest {
-  id: string;
-}
-
 class DeleteSaleService {
-  async execute({ id }: SaleRequest) {
+  async execute(id: string) {
     const deleteSale = getCustomRepository(SalesRepositories);
 
-    const sale = await deleteSale.delete(id);
+    if (!(await deleteSale.findOne(id)))
+      throw new Error('Sale does not exists!');
 
-    return sale;
+    return await deleteSale.delete(id);
   }
 }
 

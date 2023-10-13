@@ -20,6 +20,8 @@ class CreateSaleService {
   }: SaleRequest) {
     const createSale = getCustomRepository(SalesRepositories);
 
+    if (!total || !products || !user_id) throw new Error('Empty field');
+
     const sale = createSale.create({
       total,
       description,
