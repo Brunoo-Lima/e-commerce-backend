@@ -24,6 +24,7 @@ import { AuthUserController } from './controller/user/AuthUserController';
 import { CreateDeliveryController } from './controller/delivery/CreateDeliveryController';
 import { ListDeliveryController } from './controller/delivery/ListDeliveryController';
 import { DeleteDeliveryController } from './controller/delivery/DeleteDeliveryController';
+import { UpdateDeliveryController } from './controller/delivery/UpdateDeliveryController';
 
 const router = Router();
 
@@ -83,6 +84,11 @@ router.delete(
   '/delivery/:id',
   isAuthenticated,
   new DeleteDeliveryController().handle
+);
+router.put(
+  '/delivery/:id',
+  isAuthenticated,
+  new UpdateDeliveryController().handle
 );
 
 export { router };
