@@ -21,6 +21,7 @@ import { ListSaleController } from './controller/sale/ListSaleController';
 import { DeleteSaleController } from './controller/sale/DeleteSaleController';
 import { UpdateSaleController } from './controller/sale/UpdateSaleController';
 import { AuthUserController } from './controller/user/AuthUserController';
+import { CreateDeliveryController } from './controller/delivery/CreateDeliveryController';
 
 const router = Router();
 
@@ -63,10 +64,17 @@ router.delete(
   new DeleteCategoryController().handle
 );
 
-//--ROTAS SALES--
+//--ROTAS SALE--
 router.post('/sale', isAuthenticated, new CreateSaleController().handle);
 router.get('/sale', isAuthenticated, new ListSaleController().handle);
 router.put('/sale/:id', isAuthenticated, new UpdateSaleController().handle);
 router.delete('/sale/:id', isAuthenticated, new DeleteSaleController().handle);
+
+//--ROTAS DELIVERY--
+router.post(
+  '/delivery',
+  isAuthenticated,
+  new CreateDeliveryController().handle
+);
 
 export { router };
