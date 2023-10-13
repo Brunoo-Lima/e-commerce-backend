@@ -23,6 +23,7 @@ import { UpdateSaleController } from './controller/sale/UpdateSaleController';
 import { AuthUserController } from './controller/user/AuthUserController';
 import { CreateDeliveryController } from './controller/delivery/CreateDeliveryController';
 import { ListDeliveryController } from './controller/delivery/ListDeliveryController';
+import { DeleteDeliveryController } from './controller/delivery/DeleteDeliveryController';
 
 const router = Router();
 
@@ -78,5 +79,10 @@ router.post(
   new CreateDeliveryController().handle
 );
 router.get('/delivery', isAuthenticated, new ListDeliveryController().handle);
+router.delete(
+  '/delivery/:id',
+  isAuthenticated,
+  new DeleteDeliveryController().handle
+);
 
 export { router };
