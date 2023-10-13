@@ -8,17 +8,20 @@ interface CategoryRequest {
 
 class UpdateCategoryService {
   async execute({ id, name }: CategoryRequest) {
-    if (name === '') throw new Error('Nome inválido!');
-
     const updateCategory = getCustomRepository(CategoriesRepositories);
 
-    const updateCategoryExists = await updateCategory.findOne({
+    if (!name) throw new Error('Empty field');
+
+    if (!(await updateCategory.findOne(id)))
+      throw new Error('Id does not exists!');
+
+    const nameAlreadyExists = await updateCategory.findOne({
       where: {
-        id: id,
+        name: name,
       },
     });
 
-    if (!updateCategoryExists) throw new Error('ID não existe');
+    if (nameAlreadyExists) throw new Error('Category already exists!');
 
     const category = await updateCategory.update({ id }, { name });
 

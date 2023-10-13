@@ -26,6 +26,14 @@ class UpdateProductService {
 
     if (!name || !price || !category_id) throw new Error('Empty field');
 
+    const productAlreadyExists = await updateProduct.findOne({
+      where: {
+        name: name,
+      },
+    });
+
+    if (productAlreadyExists) throw new Error('Product already exists!');
+
     const product = await updateProduct.update(
       { id },
       { name, description, price, url, category_id }

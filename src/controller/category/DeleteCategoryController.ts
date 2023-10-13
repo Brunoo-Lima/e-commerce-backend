@@ -7,9 +7,9 @@ class DeleteCategoryController {
 
     const deleteCategoryService = new DeleteCategoryService();
 
-    await deleteCategoryService.execute({ id });
+    await deleteCategoryService.execute(id);
 
-    return res.send('Categoria excluido com Sucesso!');
+    return res.send('Category deleted with success!');
   }
 }
 

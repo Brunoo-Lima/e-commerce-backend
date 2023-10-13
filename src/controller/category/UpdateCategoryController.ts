@@ -8,12 +8,12 @@ class UpdateCategoryController {
 
     const updateCategory = new UpdateCategoryService();
 
-    const category = await updateCategory.execute({
+    await updateCategory.execute({
       id,
       name,
     });
 
-    return res.json(category);
+    return res.send('Category updated with success');
   }
 }
 
