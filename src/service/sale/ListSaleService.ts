@@ -10,7 +10,7 @@ class ListSaleService {
       relations: ['products'],
     });
 
-    if (sale.length == 0) return 'Lista vazia';
+    if (sale.length == 0) return 'Empty list';
 
     return sale;
   }

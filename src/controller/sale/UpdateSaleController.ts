@@ -8,7 +8,7 @@ class UpdateSaleController {
 
     const updateSaleService = new UpdateSaleService();
 
-    const sales = await updateSaleService.execute({
+    await updateSaleService.execute({
       id,
       total,
       description,
@@ -16,7 +16,7 @@ class UpdateSaleController {
       user_id,
     });
 
-    return res.json(sales);
+    return res.send('Sales updated with success');
   }
 }
 

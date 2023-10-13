@@ -1,13 +1,12 @@
 import { getCustomRepository } from 'typeorm';
 import { ProductsRepositories } from '../../repositories/ProductsRepositories';
 
-interface ProductRequest {
-  id: string;
-}
-
 class DeleteProductService {
-  async execute({ id }: ProductRequest) {
+  async execute(id: string) {
     const deleteProduct = getCustomRepository(ProductsRepositories);
+
+    if (!(await deleteProduct.findOne(id)))
+      throw new Error('Id does not exists!');
 
     const product = await deleteProduct.delete(id);
 

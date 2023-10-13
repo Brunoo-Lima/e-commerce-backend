@@ -21,9 +21,14 @@ class UpdateProductService {
   }: ProductRequest) {
     const updateProduct = getCustomRepository(ProductsRepositories);
 
+    if (!(await updateProduct.findOne(id)))
+      throw new Error('Id does not exists!');
+
+    if (!name || !price || !category_id) throw new Error('Empty field');
+
     const product = await updateProduct.update(
       { id },
-      { name, description, price, url, category_id },
+      { name, description, price, url, category_id }
     );
 
     return product;

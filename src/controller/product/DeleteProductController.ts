@@ -7,9 +7,9 @@ class DeleteProductController {
 
     const deleteProduct = new DeleteProductService();
 
-    const product = await deleteProduct.execute({ id });
+    await deleteProduct.execute(id);
 
-    return res.send('Produto excluido com Sucesso! ' + product.affected);
+    return res.send('Product deleted with success!');
   }
 }
 

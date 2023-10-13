@@ -8,7 +8,7 @@ class UpdateProductController {
 
     const updateProductService = new UpdateProductService();
 
-    const product = await updateProductService.execute({
+    await updateProductService.execute({
       id,
       name,
       description,
@@ -17,7 +17,7 @@ class UpdateProductController {
       category_id,
     });
 
-    return res.json(product);
+    return res.send('Product updated with success!');
   }
 }
 

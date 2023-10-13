@@ -8,7 +8,7 @@ class DeleteSaleController {
 
     await deleteSale.execute(id);
 
-    return res.send('Venda excluida com Sucesso!');
+    return res.send('Sale deleted with success!');
   }
 }
 

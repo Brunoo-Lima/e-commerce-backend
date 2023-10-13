@@ -3,7 +3,7 @@ import { ProductsRepositories } from '../../repositories/ProductsRepositories';
 
 interface ProductRequest {
   name: string;
-  description: string;
+  description?: string;
   price: number;
   url: string;
   category_id: string;
@@ -20,7 +20,7 @@ class CreateProductService {
     const productsRepositories = getCustomRepository(ProductsRepositories);
 
     if (!name || !description || !price || !url || !category_id)
-      throw new Error('Campo vazio');
+      throw new Error('Empty field');
 
     const productAlreadyExists = await productsRepositories.findOne({
       where: {
@@ -28,7 +28,7 @@ class CreateProductService {
       },
     });
 
-    if (productAlreadyExists) throw new Error('Produto já existe');
+    if (productAlreadyExists) throw new Error('Product already exists!');
 
     const product = productsRepositories.create({
       name,
