@@ -11,16 +11,17 @@ interface UserRequest {
 
 class CreateUserService {
   async execute({ name, email, admin, password }: UserRequest) {
-    if (!email) throw new Error('Email invalido!');
+    if (!email) throw new Error('Invalid email');
 
     const usersRepository = getCustomRepository(UsersRepositories);
+
     const userAlreadyExists = await usersRepository.findOne({
       where: {
         email,
       },
     });
 
-    if (userAlreadyExists) throw new Error('Usuário já existe');
+    if (userAlreadyExists) throw new Error('Users already exists');
 
     const passwordHash = await hash(password, 8);
 

@@ -14,7 +14,7 @@ class UpdateUserService {
   async execute({ id, name, email, admin, password }: UserRequest) {
     const updateUser = getCustomRepository(UsersRepositories);
 
-    if (!name || !email || !admin || !password) throw new Error('Campo vazio');
+    if (!name || !email || !admin || !password) throw new Error('Empty field');
 
     const userExists = await updateUser.findOne({
       where: {
@@ -22,13 +22,21 @@ class UpdateUserService {
       },
     });
 
-    if (!userExists) throw new Error('Usuário não existe');
+    if (!userExists) throw new Error('User does not exists');
+
+    const EmailExists = await updateUser.findOne({
+      where: {
+        email: email,
+      },
+    });
+
+    if (EmailExists) throw new Error('Email already exists');
 
     const passwordHash = await hash(password, 8);
 
     const update = await updateUser.update(
       { id },
-      { name, email, admin, password: passwordHash },
+      { name, email, admin, password: passwordHash }
     );
 
     return update;

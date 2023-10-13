@@ -7,6 +7,8 @@ class ListUserService {
 
     const users = await user.find();
 
+    if (users.length == 0) return 'Empty list';
+
     return users;
   }
 }

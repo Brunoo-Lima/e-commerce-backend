@@ -8,7 +8,7 @@ class UpdateUserController {
 
     const updateUserService = new UpdateUserService();
 
-    const update = await updateUserService.execute({
+    await updateUserService.execute({
       id,
       name,
       email,
@@ -16,7 +16,7 @@ class UpdateUserController {
       password,
     });
 
-    return res.send('Usuário alterado com sucesso');
+    return res.send('User updated with success');
   }
 }
 

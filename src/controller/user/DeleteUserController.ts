@@ -7,9 +7,9 @@ class DeleteUserController {
 
     const deleteUserService = new DeleteUserService();
 
-    await deleteUserService.execute({ id });
+    await deleteUserService.execute(id);
 
-    return res.send('Usuário excluido com sucesso');
+    return res.send('User deleted with success');
   }
 }
 

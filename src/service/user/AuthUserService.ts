@@ -10,9 +10,10 @@ interface UserRequest {
 
 class AuthUserService {
   async execute({ email, password }: UserRequest) {
-    if (!email) throw new Error('Email incorreto');
+    if (!email) throw new Error('Incorrect email');
 
     const usersRepository = getCustomRepository(UsersRepositories);
+
     const user = await usersRepository.findOne({
       where: {
         email: email,
@@ -34,7 +35,7 @@ class AuthUserService {
       {
         subject: 'Admin',
         expiresIn: '30d',
-      },
+      }
     );
 
     return {
