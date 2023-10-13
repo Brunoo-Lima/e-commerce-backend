@@ -33,12 +33,13 @@ class AuthUserService {
       },
       process.env.JWT_SECRET,
       {
-        subject: 'Admin',
-        expiresIn: '30d',
+        subject: user.id,
+        expiresIn: '1d',
       }
     );
 
     return {
+      id: user.id,
       email: user.email,
       password: user.password,
       token,
